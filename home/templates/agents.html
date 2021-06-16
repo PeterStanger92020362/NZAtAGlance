@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if agents %}
+<div class="card" style="width: 80rem;">
+    <div class="card-header h1 text-xl-center text-uppercase font-weight-bold">
+        Agents
+    </div>
+    <ul class="list-group h3">
+        {% for agent in agents %}
+        <li class="list-group-item">
+            <strong>{{agent.last_name|capfirst}} {{agent.first_name|capfirst}}</strong> - {{agent.provider}}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% else %}
+<p>There are no agents to display.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h5 class="card-header">
+        {{ tour.tour_name|capfirst }}
+    </h5>
+
+    <div class="card-body">
+        <h5 class="card-title">
+            Description
+        </h5>
+        <p class="card-text">
+            {{ tour.description }}
+        </p>
+
+        <h5 class="card-title">
+            Duration
+        </h5>
+        <p class="card-text">
+            {{ tour.duration }}
+        </p>
+
+        <h5 class="card-title">
+            Available
+        </h5>
+        <p class="card-text">
+            {{ tour.available }}
+        </p>
+    </div>
+</div>
+{% endblock %}

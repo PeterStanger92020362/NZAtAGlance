@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if tours %}
+<div class="card" style="width: 100%; height: 100%;">
+    <div class="card-header h1 text-xl-center text-uppercase font-weight-bold">
+        Tours
+    </div>
+    {% for tour in tours %}
+    <div class="card-body">
+        <p class="card-text h4">
+            <a href="{% url 'tour_detail' tour.id %}">
+                <strong>{{ tour.tour_name|capfirst }}</strong> - {{tour.duration}}
+            </a>
+        </p>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>There are no tours to display.</p>
+{% endif %}
+{% endblock %}
