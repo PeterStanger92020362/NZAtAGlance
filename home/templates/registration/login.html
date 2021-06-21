@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+  <form method="post" action="{% url 'login' %}" class="form-signin">
+    {% csrf_token %}
+    <img class="mb-4" src="{% static 'images/logo.png' %}" alt="" width="280" height="200">
+
+    {% if form.errors %}
+        <p><b>Incorrect Login details.</b></p>
+    {% endif %}
+
+        <tr class="form-control">
+            <label for="username">Username</label>
+            <input type="username" class="form-control" name="{{ form.username.html_name }}" placeholder="Username" value="{{ form.username.value|default_if_none:"" }}" />
+        </tr>
+
+        <tr class="form-control">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="{{ form.password.html_name }}" placeholder="Password" value="{{ form.password.value|default_if_none:"" }}" />
+        </tr>
+    </table>
+
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    
+    <input type="hidden" name="next" value="{{ next }}" />
+    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+  </form>
+
+  
+
+{% endblock %}

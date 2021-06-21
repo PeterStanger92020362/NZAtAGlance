@@ -9,9 +9,11 @@ The classes defined below are function based view (FBV).
 def home(request):
     return render(request, 'index.html')
 
+def login(request):
+    return render(request, 'registration/login.html')
 
-def signin(request):
-    return render(request, 'signin.html')
+def logout(request):
+    return render(request, 'registration/logged_out.html')
 
 """
 The classes defined below are class based view (CBV).
