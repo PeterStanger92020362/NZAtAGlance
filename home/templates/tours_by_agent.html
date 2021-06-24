@@ -7,6 +7,7 @@
             <div class="card-header h1 text-xl-center text-uppercase font-weight-bold">
                 Tours
             </div>
+
             {% for tour in tours %}
             
                     <div class="card-body">
@@ -18,9 +19,17 @@
                     </div>
 
             {% endfor %}
+
+
+            {{ user.first_name }} {{ user.last_name }}
+
+
+
         </div>
     {% else %}
         <p>There are no tours to display.</p>
     {% endif %}
+
+
 
 {% endblock %}

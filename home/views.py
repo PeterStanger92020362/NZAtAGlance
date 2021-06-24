@@ -1,10 +1,9 @@
-from django.http import request
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User, UserManager
 
 from .models import Tour, Agent
 
@@ -68,11 +67,19 @@ class TourDetailView(LoginRequiredMixin, DetailView):
 
 class ToursByAgentView(LoginRequiredMixin, ListView):
 
-
-    queryset = Tour.objects.all().filter(agent_id=1)
-
+    queryset = Tour.objects.filter(agent_id=1)
+  
+   
     template_name = 'tours_by_agent.html'
 
-    context_object_name = 'tour'
+    context_object_name = 'tours'
 
     paginate_by = 10
+
+
+class AgentDetailView(LoginRequiredMixin, DetailView):
+    queryset = Agent.objects.all().order_by('agent_username')
+
+    template_name = 'agent_detail.html'
+
+    context_object_name = 'agent'
