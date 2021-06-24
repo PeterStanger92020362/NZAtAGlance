@@ -1,19 +1,27 @@
+from django.http import request
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User, UserManager
 
 from .models import Tour, Agent
 
 """
 The classes defined below are function based view (FBV).
 """
+@login_required
 def home(request):
     return render(request, 'index.html')
 
 def login(request):
     return render(request, 'registration/login.html')
 
+@login_required
 def logout(request):
     return render(request, 'registration/logged_out.html')
+
 
 """
 The classes defined below are class based view (CBV).
@@ -23,7 +31,7 @@ if you use ListView, you have to define the corresponding model
 interaction with Database.
 """
 
-class TourListView(ListView):
+class TourListView(LoginRequiredMixin, ListView):
     queryset = Tour.objects.all().order_by('tour_name')
 
     # setup template file
@@ -38,7 +46,7 @@ class TourListView(ListView):
     paginate_by = 10
 
 
-class AgentListView(ListView):
+class AgentListView(LoginRequiredMixin, ListView):
     queryset = Agent.objects.all().order_by('agent_username')
 
     # setup template file
@@ -50,9 +58,21 @@ class AgentListView(ListView):
     paginate_by = 10
 
 
-class TourDetailView(DetailView):
+class TourDetailView(LoginRequiredMixin, DetailView):
     queryset = Tour.objects.all().order_by('tour_name')
 
     template_name = 'tour_detail.html'
 
     context_object_name = 'tour'
+
+
+class ToursByAgentView(LoginRequiredMixin, ListView):
+
+
+    queryset = Tour.objects.all().filter(agent_id=1)
+
+    template_name = 'tours_by_agent.html'
+
+    context_object_name = 'tour'
+
+    paginate_by = 10

@@ -8,13 +8,15 @@
                 Tours
             </div>
             {% for tour in tours %}
-            <div class="card-body">
-                <p class="card-text h4">
-                    <a href="{% url 'tour_detail' tour.id %}">
-                        <strong>{{ tour.tour_name|capfirst }}</strong> - {{tour.duration}}
-                    </a>
-                </p>
-            </div>
+            
+                    <div class="card-body">
+                        <p class="card-text h4">
+                            <a href="{% url 'tour_detail' tour.id %}">
+                                <strong>{{ tour.tour_name|capfirst }}</strong> - {{tour.duration}}
+                            </a>
+                        </p>
+                    </div>
+
             {% endfor %}
         </div>
     {% else %}
