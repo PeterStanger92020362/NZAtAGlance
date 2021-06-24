@@ -19,7 +19,7 @@ urlpatterns = [
     path('agents/', AgentListView.as_view(), name='agents'),
     path('tours/<int:pk>/', TourDetailView.as_view(), name='tour_detail'),
 
-    path('agent/<int:pk>/', AgentDetailView.as_view(template_name="registration/agent_detail.html"), name='agent_detail'),
+    path('agent/<int:pk>/', AgentDetailView.as_view(), name='agent_detail'),
 
     path('tours_by_agent/', ToursByAgentView.as_view(), name='tours_by_agent'),
 ]

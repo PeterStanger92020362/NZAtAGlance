@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h5 class="card-header">
+        {{ agent.first_name|capfirst }} {{ agent.last_name|capfirst }}
+    </h5>
+
+    <form method="post" action="" class="ChangeAgent">
+        {% csrf_token %}
+
+        {% if form.errors %}
+            <p class="errornote">
+                {% if form.errors.items|length == 1 %}
+                    Please correct the error below:
+                {% else %}
+                    Please correct the errors below:
+                {% endif %}
+            </p>
+        {% endif %}
+
+        {{ form.email_address.errors }}
+        {{ form.phone_number.errors }}
+        
+        <fieldset class="module aligned wide">
+   
+            <div class="card-body">
+                <h5 class="card-title">
+                    Email Address
+                </h5>
+                <p class="card-text">
+                    <input id="email_address" name="email_address" type="email" value="{{ agent.email_address }}">
+                    {% if form.email_address.help_text %}
+                        <div class="help">{{ form.email.address.help_text|safe }}</div>
+                    {% endif %} 
+                </p>
+    
+                <h5 class="card-title">
+                    Phone Number
+                </h5>
+                <p class="card-text">
+                    <input id="phone_number" name="phone_number" type="phone" value="{{ agent.phone_number}}">
+                    {% if form.phone_number.help_text %}
+                        <div class="help">{{ form.phone_number.help_text|safe }}</div>
+                    {% endif %} 
+                </p>
+    
+                <h5 class="card-title">
+                    Provider
+                </h5>
+                <p class="card-text">
+                    {{ agent.provider }}
+                </p>
+
+                <div class="submit-row">
+                    <input type="submit" value="Save Changes" class="default">
+                </div> 
+                
+            </div>
+
+        </fieldset>
+
+    </form>    
+
+</div>
+{% endblock %}

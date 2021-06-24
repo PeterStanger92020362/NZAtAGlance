@@ -1,4 +1,5 @@
-from django.contrib.auth.models import User
+from django.http.response import HttpResponse, HttpResponseRedirect
+from NZAtAGlance.forms import ChangeAgent
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
@@ -6,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Tour, Agent
+
+
 
 """
 The classes defined below are function based view (FBV).

@@ -7,6 +7,8 @@
             <div class="card-header h1 text-xl-center text-uppercase font-weight-bold">
                 Tours
             </div>
+            
+            Can't find a way to link current User and Agent and then filter Tours by that Agent's ID
 
             {% for tour in tours %}
             
@@ -19,11 +21,6 @@
                     </div>
 
             {% endfor %}
-
-
-            {{ user.first_name }} {{ user.last_name }}
-
-
 
         </div>
     {% else %}
